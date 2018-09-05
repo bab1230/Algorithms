@@ -13,10 +13,6 @@ void Insertion::sort(std::vector<int>& data){
         for (int j = i; j > 0 && data[j - 1] > data[j]; j--)
             swap(&data[j], &data[j-1]);
     }
-    for(int x: data){
-        std::cout << x << std::endl;
-    }
-    //return data;
 }
 void Insertion::swap(int* aPtr, int* bPtr){
     int temp = *aPtr;

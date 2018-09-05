@@ -11,11 +11,8 @@
 #include <vector>
 class SortingAlgo{
 public:
-    virtual void sort(std::vector<int>&){};
-    virtual void swap(int*, int*){};
-    virtual void BinaryTree(){};//vector thing)
-private:
-    static void BinaryTreeSort(std::vector<int>&, int index){};
+    virtual void sort(std::vector<int>&) = 0;
+    virtual void swap(int*, int*) = 0;
 };
 
 #endif /* SortingAlgo_h */

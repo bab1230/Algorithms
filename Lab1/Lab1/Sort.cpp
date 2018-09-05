@@ -7,6 +7,7 @@
 //
 #include <fstream>
 #include <iostream>
+#include <string>
 #include "Sort.hpp"
 using namespace std;
 Sort::Sort(){
@@ -27,26 +28,46 @@ void Sort::load(char* fileName){
     file.close();
 }
 void Sort::excecute(){
-    selectedAlgo.sort(data);
-    for(int x: data)
-        std::cout << x << std::endl;
+    auto start = std::chrono::high_resolution_clock::now();
+    selectedAlgo->sort(data);
+    auto finish = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> elapsed = finish - start;
+    time = elapsed.count();
 }
 void Sort::display(){
-    
+    for(int x: data){
+        cout << x << endl;
+    }
 }
 void Sort::stats(){
-    
+    cout << "Algorithm Name: " << algoName << endl;
+    cout << "Excecution Time: " << time << endl;
+    cout << "Number of Records Analyzed: " << data.size() << endl << endl;
 }
 void Sort::select(AlgoType algo){
-    if(algo == 0)
-        selectedAlgo = Bubble();
-    else if(algo == 1)
-        selectedAlgo = Insertion();
-    else if(algo == 2)
-        selectedAlgo = Merge();
+    if(algo == 0){
+        selectedAlgo = new Bubble();
+        algoName = "bubble";
+    }
+    else if(algo == 1){
+        selectedAlgo = new Insertion();
+        algoName = "insertion";
+    }
+    else if(algo == 2){
+        selectedAlgo = new Merge();
+        algoName = "merge";
+    }
 }
 void Sort::save(char * fileName){
-    
+    ofstream file;
+    file.open(fileName);
+    if (!file) {
+        cerr << "Unable to open file";
+        exit(1);
+    }
+    for(int i = 0; i <data.size();i++)
+        file << data[i] << endl;
+    file.close();
 }
 void Sort::configure(){
     

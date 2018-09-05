@@ -13,7 +13,7 @@
 #include "SortingAlgo.h"
 class Sort : public Algorithm{
 private:
-    static SortingAlgo algorithm;
+    static SortingAlgo* algorithm;
 public:
     Sort();
     void load(char*);//Takes a filename as and can read input data file

@@ -39,6 +39,7 @@
 		560AB32D21377A8100410368 /* Insertion.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Insertion.hpp; sourceTree = "<group>"; };
 		560AB32F21377DF400410368 /* Merge.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Merge.cpp; sourceTree = "<group>"; };
 		560AB33021377DF400410368 /* Merge.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Merge.hpp; sourceTree = "<group>"; };
+		565006A2213F3C270030A327 /* GenerateData.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = GenerateData.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +83,7 @@
 				560AB32D21377A8100410368 /* Insertion.hpp */,
 				560AB32F21377DF400410368 /* Merge.cpp */,
 				560AB33021377DF400410368 /* Merge.hpp */,
+				565006A2213F3C270030A327 /* GenerateData.hpp */,
 			);
 			path = Lab1;
 			sourceTree = "<group>";

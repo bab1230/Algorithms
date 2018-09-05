@@ -13,9 +13,6 @@ void Bubble::sort(std::vector<int>& data){
         for (int j = 0; j < data.size()-i-1; j++)
             if (data[j] > data[j+1])
                 swap(&data[j], &data[j+1]);
-    for(int x: data){
-        std::cout << x << std::endl;
-    }
 }
 void Bubble::swap(int* aPtr, int* bPtr){
     int temp = *aPtr;

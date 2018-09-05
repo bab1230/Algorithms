@@ -11,24 +11,57 @@
 #include "Insertion.hpp"
 #include "Merge.hpp"
 #include "Sort.hpp"
+#include "GenerateData.hpp"
 #include <vector>
 #include <unordered_set>
 #include <iterator>
 #include <fstream>
 #include <cstdlib>
 #include <ctime>
+#include <string>
+#include <chrono>
 using namespace std;
 void swap(int* aPtr, int* bPtr){
     int temp = *aPtr;
     *aPtr = *bPtr;
     *bPtr = temp;
 }
+const std::vector<char*> dataOrders = {"Reverse", "Random", "Random30percent"};//add unique
+const std::vector<char*> dataSizes = {"10.txt","1000.txt","10000.txt","100000.txt"};
+
 int main(int argc, const char * argv[]) {
-    std::vector<int> stuff = {10,9,8,7,6,5,4,3,2,1};
+    /*std::vector<int> stuff = {10,9,8,7,6,5,4,3,2,1};
     Sort file;
-    file.load("Reverse10.txt");
-    file.select(BUBBLE);
+    file.load((char*)"Reverse100000.txt");
+    //AlgoType algo = static_cast<AlgoType>(2);
+    file.select(MERGE);
     file.excecute();
+    file.save((char*)"out.txt");
+    file.stats();*/
+    GenerateData b;
+    b.generate();
+    /*
+    Algorithm* sort;
+    for(int i = 0; i <= 2; i++){
+        AlgoType algo = static_cast<AlgoType>(i);
+        for(int j = 0; j < dataOrders.size(); j++){
+            for(int k = 0; k < dataSizes.size(); k++){
+                char* fileName;
+                strcpy(fileName, dataOrders[j]);
+                strcat(fileName, dataSizes[k]);
+                sort = new Sort();
+                sort->load(fileName);
+                sort->select(algo);
+                sort->excecute();
+                sort->stats();
+            }
+        }
+    }*/
+    
+    
+    //SortingAlgo* bub;
+    //bub = new Bubble();
+    //bub->sort(stuff);
     //Bubble a;
     //a.sort(stuff);
     /*std::vector<int> stuff = {5,0,3,34,56,3,6,2,1};
