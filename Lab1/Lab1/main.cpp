@@ -12,8 +12,6 @@
 #include "Merge.hpp"
 #include "Sort.hpp"
 #include "GenerateData.hpp"
-#include <vector>
-#include <string>
 void swap(int* aPtr, int* bPtr){
     int temp = *aPtr;
     *aPtr = *bPtr;
@@ -23,8 +21,10 @@ const std::vector<std::string> dataOrders = {"Reverse", "Random", "Random30perce
 const std::vector<std::string> dataSizes = {"10.txt","1000.txt","10000.txt","100000.txt"};
 
 int main(int argc, const char * argv[]) {
-    GenerateData b;
-    b.generate();
+    /*GenerateData b;
+     *b.generate();
+     *uncomment this to generate new datasets
+     */
     
     Algorithm* sort;
     for(int i = 0; i <= 2; i++){
