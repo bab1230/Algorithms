@@ -26,8 +26,8 @@ void swap(int* aPtr, int* bPtr){
     *aPtr = *bPtr;
     *bPtr = temp;
 }
-const std::vector<char*> dataOrders = {"Reverse", "Random", "Random30percent"};//add unique
-const std::vector<char*> dataSizes = {"10.txt","1000.txt","10000.txt","100000.txt"};
+const std::vector<std::string> dataOrders = {"Reverse", "Random", "Random30percent", "Unique"};//add unique
+const std::vector<std::string> dataSizes = {"10.txt","1000.txt","10000.txt","100000.txt"};
 
 int main(int argc, const char * argv[]) {
     /*std::vector<int> stuff = {10,9,8,7,6,5,4,3,2,1};
@@ -40,23 +40,22 @@ int main(int argc, const char * argv[]) {
     file.stats();*/
     GenerateData b;
     b.generate();
-    /*
+    
     Algorithm* sort;
     for(int i = 0; i <= 2; i++){
         AlgoType algo = static_cast<AlgoType>(i);
         for(int j = 0; j < dataOrders.size(); j++){
             for(int k = 0; k < dataSizes.size(); k++){
-                char* fileName;
-                strcpy(fileName, dataOrders[j]);
-                strcat(fileName, dataSizes[k]);
+                std::string fileName = dataOrders[j] + dataSizes[k];
                 sort = new Sort();
                 sort->load(fileName);
                 sort->select(algo);
                 sort->excecute();
+                std::cout << fileName << std::endl;
                 sort->stats();
             }
         }
-    }*/
+    }
     
     
     //SortingAlgo* bub;

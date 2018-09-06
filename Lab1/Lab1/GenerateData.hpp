@@ -86,11 +86,12 @@ void GenerateData::generate(){
             data.push_back(i);
         std::unordered_set<int> unique(data.begin(),data.end());
         
-        for(int i = size*.2+1; i<=size;i++){
+        for(int i = size*.2+1; i<=size/2+size*.1;i++){
             int randNum = rand()%size+1;
             while(unique.find(randNum)!=unique.end()){
                 randNum = rand()%size+1;
             }
+            data.push_back(randNum);
             data.push_back(randNum);
         }
         file.open(dataOrder + dataSizes[i] + ".txt");
@@ -100,26 +101,6 @@ void GenerateData::generate(){
             file << x << std::endl;
         file.close();
     }
-    /*ofstream file;
-     file.open("Unique20percent10.txt");
-     if (!file) {
-     cerr << "Unable to open file";
-     exit(1);
-     }
-     vector<int> nums= { };
-     for(int i = 1; i<=10*.2;i++)
-     nums.push_back(i);
-     unordered_set<int> unique(nums.begin(),nums.end());
-     for(int i = 10*.2+1; i<=10;i++){
-        int randNum = rand()%10+1;
-        while(unique.find(randNum)!=unique.end()){
-            randNum = rand()%10+1;
-        }
-        nums.push_back(randNum);
-     }
-     for(int x: nums)
-        file << x << endl;
-     file.close();*/
 }
 
 #endif /* GenerateData_hpp */

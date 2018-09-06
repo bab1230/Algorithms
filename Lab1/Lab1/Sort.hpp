@@ -16,7 +16,7 @@ private:
     static SortingAlgo* algorithm;
 public:
     Sort();
-    void load(char*);//Takes a filename as and can read input data file
+    void load(std::string);//Takes a filename as and can read input data file
     void excecute();//Executes the search algorithm
     void display();//Prints solution to screen
     void stats();//Prints algorithm name, execution time and number of records analyzed to screen in a readable format

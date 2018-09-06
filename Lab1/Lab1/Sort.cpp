@@ -13,7 +13,7 @@ using namespace std;
 Sort::Sort(){
     
 }
-void Sort::load(char* fileName){
+void Sort::load(std::string fileName){
     ifstream file;
     file.open(fileName);
     if (!file) {
