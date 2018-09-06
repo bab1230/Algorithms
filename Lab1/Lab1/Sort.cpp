@@ -20,9 +20,8 @@ void Sort::load(std::string fileName){
         cerr << "Unable to open file";
         exit(1);
     }
-    while(!file.eof()){
-        int number;
-        file >> number;
+    int number;
+    while(file >> number){
         data.push_back(number);
     }
     file.close();
@@ -46,15 +45,15 @@ void Sort::stats(){
 }
 void Sort::select(AlgoType algo){
     if(algo == 0){
-        selectedAlgo = new Bubble();
+        selectedAlgo = new Bubble<int>();
         algoName = "bubble";
     }
     else if(algo == 1){
-        selectedAlgo = new Insertion();
+        selectedAlgo = new Insertion<int>();
         algoName = "insertion";
     }
     else if(algo == 2){
-        selectedAlgo = new Merge();
+        selectedAlgo = new Merge<int>();
         algoName = "merge";
     }
 }

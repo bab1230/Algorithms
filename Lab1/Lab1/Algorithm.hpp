@@ -24,7 +24,7 @@ enum AlgoType{
 class Algorithm{
 protected:
     std::vector<int> data;
-    SortingAlgo* selectedAlgo;
+    SortingAlgo<int>* selectedAlgo;
     double time;
     char* outFile;
     char* algoName;

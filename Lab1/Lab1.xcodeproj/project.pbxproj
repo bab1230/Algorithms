@@ -9,9 +9,6 @@
 /* Begin PBXBuildFile section */
 		560AB31C2135FD6400410368 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 560AB31B2135FD6400410368 /* main.cpp */; };
 		560AB3272135FE3D00410368 /* Sort.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 560AB3252135FE3D00410368 /* Sort.cpp */; };
-		560AB32B2137700E00410368 /* Bubble.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 560AB3292137700E00410368 /* Bubble.cpp */; };
-		560AB32E21377A8100410368 /* Insertion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 560AB32C21377A8100410368 /* Insertion.cpp */; };
-		560AB33121377DF400410368 /* Merge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 560AB32F21377DF400410368 /* Merge.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -33,11 +30,8 @@
 		560AB3252135FE3D00410368 /* Sort.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Sort.cpp; sourceTree = "<group>"; };
 		560AB3262135FE3D00410368 /* Sort.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Sort.hpp; sourceTree = "<group>"; };
 		560AB3282137679600410368 /* SortingAlgo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SortingAlgo.h; sourceTree = "<group>"; };
-		560AB3292137700E00410368 /* Bubble.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Bubble.cpp; sourceTree = "<group>"; };
 		560AB32A2137700E00410368 /* Bubble.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Bubble.hpp; sourceTree = "<group>"; };
-		560AB32C21377A8100410368 /* Insertion.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Insertion.cpp; sourceTree = "<group>"; };
 		560AB32D21377A8100410368 /* Insertion.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Insertion.hpp; sourceTree = "<group>"; };
-		560AB32F21377DF400410368 /* Merge.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Merge.cpp; sourceTree = "<group>"; };
 		560AB33021377DF400410368 /* Merge.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Merge.hpp; sourceTree = "<group>"; };
 		565006A2213F3C270030A327 /* GenerateData.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = GenerateData.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -77,11 +71,8 @@
 				560AB3252135FE3D00410368 /* Sort.cpp */,
 				560AB3262135FE3D00410368 /* Sort.hpp */,
 				560AB3282137679600410368 /* SortingAlgo.h */,
-				560AB3292137700E00410368 /* Bubble.cpp */,
 				560AB32A2137700E00410368 /* Bubble.hpp */,
-				560AB32C21377A8100410368 /* Insertion.cpp */,
 				560AB32D21377A8100410368 /* Insertion.hpp */,
-				560AB32F21377DF400410368 /* Merge.cpp */,
 				560AB33021377DF400410368 /* Merge.hpp */,
 				565006A2213F3C270030A327 /* GenerateData.hpp */,
 			);
@@ -144,9 +135,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				560AB32B2137700E00410368 /* Bubble.cpp in Sources */,
-				560AB32E21377A8100410368 /* Insertion.cpp in Sources */,
-				560AB33121377DF400410368 /* Merge.cpp in Sources */,
 				560AB3272135FE3D00410368 /* Sort.cpp in Sources */,
 				560AB31C2135FD6400410368 /* main.cpp in Sources */,
 			);

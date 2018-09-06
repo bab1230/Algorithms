@@ -13,7 +13,7 @@
 #include "SortingAlgo.h"
 class Sort : public Algorithm{
 private:
-    static SortingAlgo* algorithm;
+    static SortingAlgo<int>* algorithm;
 public:
     Sort();
     void load(std::string);//Takes a filename as and can read input data file
