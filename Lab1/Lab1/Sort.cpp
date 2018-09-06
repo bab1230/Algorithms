@@ -9,15 +9,15 @@
 #include <iostream>
 #include <string>
 #include "Sort.hpp"
-using namespace std;
 Sort::Sort(){
     
 }
 void Sort::load(std::string fileName){
-    ifstream file;
-    file.open(fileName);
+    dataType = fileName.substr(0, fileName.find("1"));
+    std::ifstream file;
+    file.open("TestData/" + fileName);
     if (!file) {
-        cerr << "Unable to open file";
+        std::cerr << "Unable to open file";
         exit(1);
     }
     int number;
@@ -35,13 +35,14 @@ void Sort::excecute(){
 }
 void Sort::display(){
     for(int x: data){
-        cout << x << endl;
+        std::cout << x << std::endl;
     }
 }
 void Sort::stats(){
-    cout << "Algorithm Name: " << algoName << endl;
-    cout << "Excecution Time: " << time << endl;
-    cout << "Number of Records Analyzed: " << data.size() << endl << endl;
+    std::cout << "Algorithm Name: " << algoName << std::endl;
+    std::cout << "Excecution Time: " << time << std::endl;
+    std::cout << "Data Type : " << dataType << std::endl;
+    std::cout << "Number of Records Analyzed: " << data.size() << std::endl << std::endl;
 }
 void Sort::select(AlgoType algo){
     if(algo == 0){
@@ -57,16 +58,17 @@ void Sort::select(AlgoType algo){
         algoName = "merge";
     }
 }
-void Sort::save(char * fileName){
-    ofstream file;
-    file.open(fileName);
-    if (!file) {
-        cerr << "Unable to open file";
+void Sort::save(std::string fileName){
+    std::ofstream outFile;
+    std::string filepath = "Saves/" + fileName + dataType + std::to_string(data.size()) + algoName + ".txt";
+    outFile.open(filepath);
+    if (!outFile) {
+        std::cerr << "Unable to open file";
         exit(1);
     }
     for(int i = 0; i <data.size();i++)
-        file << data[i] << endl;
-    file.close();
+        outFile << data[i] << std::endl;
+    outFile.close();
 }
 void Sort::configure(){
     

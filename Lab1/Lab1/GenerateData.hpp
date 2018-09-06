@@ -33,7 +33,7 @@ void GenerateData::generate(){
         std::ofstream file;
         for(int j = size; j >= 1; j--)
             data.push_back(j);
-        file.open(dataOrder + dataSizes[i] + ".txt");
+        file.open("TestData/" + dataOrder + dataSizes[i] + ".txt");
         for(int x: data)
             file << x << std::endl;
         file.close();
@@ -50,7 +50,7 @@ void GenerateData::generate(){
             data.push_back(rand() % size + 1);
         }
         
-        file.open(dataOrder + dataSizes[i] + ".txt");
+        file.open("TestData/" + dataOrder + dataSizes[i] + ".txt");
         for(int x: data)
             file << x << std::endl;
         file.close();
@@ -68,7 +68,7 @@ void GenerateData::generate(){
         for(int i = 1; i <=data.size()*.3;i++)
             data[rand()%data.size()] = rand()%data.size();
         
-        file.open(dataOrder + dataSizes[i] + ".txt");
+        file.open("TestData/" + dataOrder + dataSizes[i] + ".txt");
         for(int x: data)
             file << x << std::endl;
         file.close();
@@ -94,7 +94,7 @@ void GenerateData::generate(){
             data.push_back(randNum);
             data.push_back(randNum);
         }
-        file.open(dataOrder + dataSizes[i] + ".txt");
+        file.open("TestData/" + dataOrder + dataSizes[i] + ".txt");
         
         std::shuffle(std::begin(data), std::end(data), rng);
         for(int x: data)
