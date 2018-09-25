@@ -1,3 +1,4 @@
+
 //
 //  Sort.cpp
 //  Lab1
@@ -71,14 +72,4 @@ void Sort::save(std::string fileName){
 }
 void Sort::configure(){
     
-}
-void Sort::setExcecutionType(Sort::Configuration exe){
-    excecutionType = exe;
-}
-void::Sort::setStorageType(Sort::Configuration stg){
-    storageType = stg;
-}
-void Sort::getConfiguration(){// he went to fast here
-    if(excecutionType == Configuration::ITERATIVE)
-        std::cout << "Iterative Excecution";
 }
