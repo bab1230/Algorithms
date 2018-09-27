@@ -53,6 +53,29 @@ void BFS::searchList(std::vector<std::vector<Node> > &adjList, int start, int fi
 
 void BFS::searchMatrix(int **mat, int start, int finish,std::vector<int>& path, bool isRecur, std::vector<bool> visited, Node* lastNode) {
     if(!isRecur) {
+        std::queue<int> myQueue;
+        int val = start;
+        myQueue.push(val);
+        visited[start-1] = true;
+        while(myQueue.size()){
+            int node = myQueue.front();
+            myQueue.pop();
+            
+            for(int i=node-1; i < 16; i++){//figure out what to make range
+                if(node == finish)
+                    return;
+                if(mat[node-1][i] != 0 && !visited[i] && node-1 != i){
+                    if (!visited[i]) {
+                        visited[i] = true;
+                        lastNode->nextPtr = new Node();
+                        lastNode->nextPtr->data = i+1;
+                        lastNode = lastNode->nextPtr;
+                        myQueue.push(i+1);
+                    }
+                }
+                
+            }
+        }
         
     } else {
         if(start == finish){

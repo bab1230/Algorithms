@@ -117,15 +117,7 @@ void Search::excecute(){
     std::vector<int> recurPath;
     std::vector<bool> visited(adjacencyList.size(), false);
     
-    //recursive searvh
-    /*searchAlgo->searchList(adjacencyList, 1, 16, recurPath, true, visited, &adjacencyList[0].front());
-    DFS::Node buff = adjacencyList[0].front();
-    while(buff.nextPtr){
-        std::cout << buff.data << " ";
-        buff = *buff.nextPtr;
-    }
-    
-    //clears next pointers
+    /*clears next pointers
     DFS::Node* clear = &adjacencyList[0].front();
     DFS::Node* temp = clear->nextPtr;
     while(clear->nextPtr){
@@ -133,7 +125,7 @@ void Search::excecute(){
         clear = temp;
     }*/
     
-    //searchAlgo->searchList(adjacencyList, 1, 16, iterPath, false, visited, &adjacencyList[0].front());
+    //searchAlgo->searchList(adjacencyList, 16, 1, iterPath, false, visited, &adjacencyList[0].front());
     searchAlgo->searchMatrix(adjacencyMatrix, 1, 16, iterPath, false, visited, &adjacencyList[0].front());
     
 //    for(auto i: iterPath) {

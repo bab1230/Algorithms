@@ -16,7 +16,7 @@
 int main(int argc, const char * argv[]) {
     Search b;
     b.load("graph.txt", "weights.txt", "positions.txt");
-    b.select(DFS);
+    b.select(BFS);
     b.excecute();
     return 0;
 }
