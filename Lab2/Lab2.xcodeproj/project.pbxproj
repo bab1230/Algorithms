@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		56151A3A215C5BFD00B2FD81 /* BFS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56151A38215C5BFD00B2FD81 /* BFS.cpp */; };
+		56151A40215C6ED700B2FD81 /* Dijkstra.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56151A3E215C6ED700B2FD81 /* Dijkstra.cpp */; };
 		569608FF2159C65E00BDCFB9 /* DFS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 569608FD2159C65E00BDCFB9 /* DFS.cpp */; };
 		56B318C1214878C500744279 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56B318C0214878C500744279 /* main.cpp */; };
 		56B318CF21487A7E00744279 /* Sort.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56B318CD21487A7E00744279 /* Sort.cpp */; };
@@ -26,6 +28,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		56151A38215C5BFD00B2FD81 /* BFS.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BFS.cpp; sourceTree = "<group>"; };
+		56151A39215C5BFD00B2FD81 /* BFS.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BFS.hpp; sourceTree = "<group>"; };
+		56151A3E215C6ED700B2FD81 /* Dijkstra.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Dijkstra.cpp; sourceTree = "<group>"; };
+		56151A3F215C6ED700B2FD81 /* Dijkstra.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Dijkstra.hpp; sourceTree = "<group>"; };
 		5686A9EF214AB68D0047D0B7 /* SearchAlgo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchAlgo.h; sourceTree = "<group>"; };
 		569608FD2159C65E00BDCFB9 /* DFS.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DFS.cpp; sourceTree = "<group>"; };
 		569608FE2159C65E00BDCFB9 /* DFS.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DFS.hpp; sourceTree = "<group>"; };
@@ -87,6 +93,10 @@
 				5686A9EF214AB68D0047D0B7 /* SearchAlgo.h */,
 				569608FD2159C65E00BDCFB9 /* DFS.cpp */,
 				569608FE2159C65E00BDCFB9 /* DFS.hpp */,
+				56151A38215C5BFD00B2FD81 /* BFS.cpp */,
+				56151A39215C5BFD00B2FD81 /* BFS.hpp */,
+				56151A3E215C6ED700B2FD81 /* Dijkstra.cpp */,
+				56151A3F215C6ED700B2FD81 /* Dijkstra.hpp */,
 			);
 			path = Lab2;
 			sourceTree = "<group>";
@@ -150,6 +160,8 @@
 				56B318C1214878C500744279 /* main.cpp in Sources */,
 				569608FF2159C65E00BDCFB9 /* DFS.cpp in Sources */,
 				56B318D221487CDF00744279 /* Search.cpp in Sources */,
+				56151A40215C6ED700B2FD81 /* Dijkstra.cpp in Sources */,
+				56151A3A215C5BFD00B2FD81 /* BFS.cpp in Sources */,
 				56B318CF21487A7E00744279 /* Sort.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

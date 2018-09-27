@@ -12,6 +12,14 @@
 #include <sstream>
 #include <math.h>
 #include "DFS.hpp"
+#include "BFS.hpp"
+struct find_data : std::unary_function<SearchAlgo::Node, bool> {
+    int data;
+    find_data(int data):data(data) { }
+    bool operator()(SearchAlgo::Node const& node) const {
+        return node.data == data;
+    }
+};
 Search::Search(){
     
 }
@@ -35,7 +43,7 @@ void Search::load(std::string graphFile, std::string weightsFile, std::string po
     std::string line;
     while(graph >> line){
         SearchAlgo::Node a;
-        std::list<SearchAlgo::Node> graphLine;
+        std::vector<SearchAlgo::Node> graphLine;
         std::stringstream seperate(line);
 
         while(getline(seperate, temp, ',')) {
@@ -55,24 +63,99 @@ void Search::load(std::string graphFile, std::string weightsFile, std::string po
             std::getline(seperate, temp, ',');
             dist += std::stoi(temp)*std::stoi(temp);
         }
-        dist = sqrt(dist);
         adjacencyList[size].front().distance = dist;
         size++;
     }
     
     for(int i = 0; i < adjacencyList.size(); i++){
-        std::list<SearchAlgo::Node>::iterator begin = adjacencyList[i].begin();
-        for (std::list<SearchAlgo::Node>::iterator it = ++adjacencyList[i].begin(); it != adjacencyList[i].end(); it++){
-            std::list<SearchAlgo::Node>::iterator firstNew = adjacencyList[it->data-1].begin();
-            it->distance = firstNew->distance - begin->distance;
+        std::vector<SearchAlgo::Node>::iterator begin = adjacencyList[i].begin();
+        for (std::vector<SearchAlgo::Node>::iterator it = ++adjacencyList[i].begin(); it != adjacencyList[i].end(); it++){
+            std::vector<SearchAlgo::Node>::iterator firstNew = adjacencyList[it->data-1].begin();
+            it->distance = (firstNew->distance - begin->distance) * (firstNew->distance - begin->distance);
         }
+    }
+    
+    while(weights >> line){
+        std::stringstream seperate(line);
+        std::getline(seperate, temp, ',');
+        std::string one = temp;
+        std::getline(seperate, temp, ',');
+        std::string two = temp;
+        
+        std::getline(seperate, temp, ',');
+        std::string weight = temp;
+
+        for(SearchAlgo::Node& n: adjacencyList[std::stoi(one)-1]) {
+            if (n.data == std::stoi(two)) {
+                n.weight = std::stoi(weight);
+            }
+        }
+    }
+    graph.clear();
+    graph.seekg(0, std::ios::beg);
+    
+    adjacencyMatrix = new int*[adjacencyList.size()];
+    for(int i =0; i < adjacencyList.size(); i++) {
+        adjacencyMatrix[i] = new int[adjacencyList.size()];
+    }
+    for(size_t i = 0; i < adjacencyList.size(); i++)
+        for(size_t j = 0; j < adjacencyList.size(); j++)
+            adjacencyMatrix[i][j] = 0;
+        
+    //std::fill(adjacencyMatrix[0], adjacencyMatrix[0] + adjacencyList.size()*adjacencyList.size(), 0);
+
+    while(graph >> line){
+        std::stringstream seperate(line);
+        std::getline(seperate, temp, ',');//this is the row
+        int row = std::stoi(temp);
+        while(std::getline(seperate, temp, ','))
+            adjacencyMatrix[row-1][std::stoi(temp)-1] = 1;
     }
 }
 void Search::excecute(){
+    std::vector<int> iterPath;
+    std::vector<int> recurPath;
     std::vector<bool> visited(adjacencyList.size(), false);
-    searchAlgo->searchList(adjacencyList, 1, 16, true, visited);
+    
+    //recursive searvh
+    /*searchAlgo->searchList(adjacencyList, 1, 16, recurPath, true, visited, &adjacencyList[0].front());
+    DFS::Node buff = adjacencyList[0].front();
+    while(buff.nextPtr){
+        std::cout << buff.data << " ";
+        buff = *buff.nextPtr;
+    }
+    
+    //clears next pointers
+    DFS::Node* clear = &adjacencyList[0].front();
+    DFS::Node* temp = clear->nextPtr;
+    while(clear->nextPtr){
+        clear->nextPtr = nullptr;
+        clear = temp;
+    }*/
+    
+    //searchAlgo->searchList(adjacencyList, 1, 16, iterPath, false, visited, &adjacencyList[0].front());
+    searchAlgo->searchMatrix(adjacencyMatrix, 1, 16, iterPath, false, visited, &adjacencyList[0].front());
+    
+//    for(auto i: iterPath) {
+//        std::cout << i << " ";
+//    }
+    
+    std::cout << std::endl << std::endl;
+    DFS::Node buff = adjacencyList[0].front();
+    while(buff.nextPtr){
+        std::cout << buff.data << " ";
+        buff = *buff.nextPtr;
+    }
+    std::cout << buff.data << std::endl;
+    /*std::cout << "Iterative Path: ";
+    for(auto i: iterPath)
+        std::cout << i << " ";
     std::cout << std::endl;
-    searchAlgo->searchList(adjacencyList, 1, 16, false, visited);
+    
+    std::cout << "Recursive Path: ";
+    for(auto i: recurPath)
+        std::cout << i << " ";
+    std::cout << std::endl;*/
 }
 void Search::display(){
     
@@ -87,7 +170,7 @@ void Search::select(AlgoType algo){
             searchAlgo = new class DFS();
             break;
         case BFS:
-            //selectedAlgo = new BFS();
+            searchAlgo = new class BFS();
             break;
         case DIJKSTRA:
             //selectedAlgo = new Dijikstra();

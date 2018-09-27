@@ -26,7 +26,7 @@ public:
     void configure();//Future expandability
 private:
     static SearchAlgo* algorithm;
-    std::vector<std::list<SearchAlgo::Node>> adjacencyList;
+    std::vector<std::vector<SearchAlgo::Node>> adjacencyList;
     int** adjacencyMatrix;
 };
 #endif /* Search_hpp */

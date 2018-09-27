@@ -1,20 +1,25 @@
 //
-//  DFS.hpp
+//  BFS.hpp
 //  Lab2
 //
-//  Created by Braden Wallace on 9/24/18.
+//  Created by Braden Wallace on 9/26/18.
 //  Copyright © 2018 Braden Wallace. All rights reserved.
 //
 
-#ifndef DFS_hpp
-#define DFS_hpp
+#ifndef BFS_hpp
+#define BFS_hpp
 
 #include <stdio.h>
 #include "SearchAlgo.h"
-class DFS : public SearchAlgo{
+#include <queue>
+class BFS : public SearchAlgo{
 public:
-    DFS();
+    BFS();
     virtual void searchList(std::vector<std::vector<Node>>& adjList, int start, int finish, std::vector<int>& path, bool isRecur, std::vector<bool> visited, Node* lastNode);
     virtual void searchMatrix(int** mat, int start, int finish, std::vector<int>& path, bool isRecur, std::vector<bool> visited, Node* lastNode);
+//(Node**, int, int, std::vector<int>&, bool, std::vector<bool>, Node* lastNode)
+//(Node**, int, int, std::vector<int>&, bool, std::vector<bool> visited);
+private:
+    void BFSrecurHelper(std::vector<std::vector<Node>>& adjList, int start, int finish, std::vector<bool> visited);
 };
-#endif /* DFS_hpp */
+#endif /* BFS_hpp */

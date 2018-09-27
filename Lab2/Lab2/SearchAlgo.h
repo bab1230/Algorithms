@@ -17,9 +17,11 @@ public:
         double distance= 0.0;
         //bool visited = false;
         int weight = 0;
+        Node* nextPtr = NULL;
+        //Node* prevPointer = nullptr;
     };
-    virtual void searchList(std::vector<std::list<Node>>&, int, int, bool = false, std::vector<bool> = {}) = 0;
-    virtual void searchMatrix(int**, int, int, bool = false) = 0;
+    virtual void searchList(std::vector<std::vector<Node>>&, int, int, std::vector<int>&, bool, std::vector<bool>, Node*) = 0;
+    virtual void searchMatrix(int**, int, int, std::vector<int>&, bool, std::vector<bool>, Node* lastNode) = 0;
     
 };
 
