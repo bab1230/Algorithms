@@ -20,8 +20,9 @@ public:
         Node* nextPtr = NULL;
         //Node* prevPointer = nullptr;
     };
-    virtual void searchList(std::vector<std::vector<Node>>&, int, int, std::vector<int>&, bool, std::vector<bool>, Node*) = 0;
-    virtual void searchMatrix(int**, int, int, std::vector<int>&, bool, std::vector<bool>, Node* lastNode) = 0;
+    virtual void searchList(std::vector<std::vector<Node>>&, int, int, bool, std::vector<bool>, Node*) = 0;
+    virtual void searchMatrix(int**, int, int, bool, std::vector<bool>, Node* lastNode) = 0;
+    unsigned int nodesExplored = 0;
     
 };
 

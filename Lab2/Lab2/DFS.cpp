@@ -13,7 +13,7 @@
 DFS::DFS(){
     
 }
-void DFS::searchList(std::vector<std::vector<Node> > &adjList, int start, int finish, std::vector<int>& path, bool isRecur, std::vector<bool> visited, Node* lastNode){
+void DFS::searchList(std::vector<std::vector<Node> > &adjList, int start, int finish, bool isRecur, std::vector<bool> visited, Node* lastNode){
     if(!isRecur){
 
         std::stack<Node> stack;
@@ -27,10 +27,15 @@ void DFS::searchList(std::vector<std::vector<Node> > &adjList, int start, int fi
             stack.pop();
             
             for(it = adjList[node.data-1].begin()+1; it != adjList[node.data-1].end(); it++){
-                if(it->data == finish)
+                if(it->data == finish){
+                    nodesExplored++;
+                    lastNode->nextPtr = new Node();
+                    lastNode->nextPtr->data = it->data;
                     return;
+                }
                 std::vector<Node>::iterator nodeVisit = adjList[it->data-1].begin();
                 if(!visited[nodeVisit->data-1]){
+                    nodesExplored++;
                     lastNode->nextPtr = &*it;
                     visited[nodeVisit->data-1] = true;
                     stack.push(*it);
@@ -45,17 +50,15 @@ void DFS::searchList(std::vector<std::vector<Node> > &adjList, int start, int fi
         visited[start-1] = true;
         for(std::vector<Node>::iterator it = adjList[start-1].begin()+1; it != adjList[start-1].end(); it++) {
             if(!visited[it->data-1]) {
-                path.push_back(it->data);
+                nodesExplored++;
                 visited[it->data-1] = true;
                 lastNode->nextPtr = &*it;
-                searchList(adjList, it->data, finish, path, true, visited, &*it);
+                searchList(adjList, it->data, finish, true, visited, &*it);
             }
         }
     }
 }
-//(Node** mat, int start, int finish, std::vector<int>& path, bool isRecur, std::vector<bool> visited, Node* lastNode);
-//(Node** mat, int start, int finish, std::vector<int>& path, bool isRecur, std::vector<bool> visited, Node* lastNode)
-void DFS::searchMatrix(int** mat, int start, int finish,std::vector<int>& path, bool isRecur, std::vector<bool> visited, Node* lastNode) {
+void DFS::searchMatrix(int** mat, int start, int finish, bool isRecur, std::vector<bool> visited, Node* lastNode) {
     if(!isRecur) {
         std::stack<int> stack;
         int val = start;
@@ -65,11 +68,17 @@ void DFS::searchMatrix(int** mat, int start, int finish,std::vector<int>& path, 
         while(stack.size()){
             int node = stack.top();
             stack.pop();
-            for(int i=start-1; i < 16; i++){
+            for(int i=start-1; i < finish; i++){
                 if(mat[node-1][i] == 1 && node-1 != i) {
-                    if(node == finish)
+                    if(node == finish){
+                        nodesExplored++;
+                        lastNode->nextPtr = new Node();
+                        lastNode->nextPtr->data = node;
+                        lastNode = lastNode->nextPtr;
                         return;
+                    }
                     if (!visited[i]) {
+                        nodesExplored++;
                         visited[i] = true;
                         lastNode->nextPtr = new Node();
                         lastNode->nextPtr->data = i+1;
@@ -81,18 +90,18 @@ void DFS::searchMatrix(int** mat, int start, int finish,std::vector<int>& path, 
         }
     } else {
         if(start == finish){
-            path.push_back(start);
+            nodesExplored++;
             return;
         }
-        for(int i=start-1; i < 16; i++){//figure out what to make range
+        for(int i=start-1; i < finish; i++){//figure out what to make range
             if(mat[start-1][i] != 0 && !visited[i] && start-1 != i){
-                path.push_back(i+1);
+                nodesExplored++;
                 lastNode->nextPtr = new Node();
                 lastNode->nextPtr->data = i+1;
                 lastNode = lastNode->nextPtr;
                 visited[i] = true;
                 //lastNode->nextPtr = &*it;
-                searchMatrix(mat, i+1, finish, path, true, visited, lastNode);
+                searchMatrix(mat, i+1, finish, true, visited, lastNode);
             }
         }
     }

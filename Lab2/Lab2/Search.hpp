@@ -18,15 +18,20 @@ public:
     
     Search();
     void load(std::string, std::string, std::string);//Takes a filename as and can read input data file
-    void excecute();//Executes the search algorithm
+    void excecute(int start, int finish, bool isRecur, bool isList);//Executes the search algorithm
     void display();//Prints solution to screen
     void stats();//Prints algorithm name, execution time and number of records analyzed to screen in a readable format
     void select(AlgoType);//enum or int or id passed as input and loads corresponding algorithm to interface
     void save(std::string);//Saves solution to file path given as input
     void configure();//Future expandability
+    void clear();
 private:
     static SearchAlgo* algorithm;
     std::vector<std::vector<SearchAlgo::Node>> adjacencyList;
     int** adjacencyMatrix;
+    std::string returnedPath;
+    std::vector<int> path;
+    unsigned int distance = 0;
+    
 };
 #endif /* Search_hpp */

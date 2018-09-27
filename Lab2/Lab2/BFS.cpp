@@ -11,7 +11,7 @@
 BFS::BFS(){
     
 }
-void BFS::searchList(std::vector<std::vector<Node> > &adjList, int start, int finish, std::vector<int>& path, bool isRecur, std::vector<bool> visited, Node* lastNode){
+void BFS::searchList(std::vector<std::vector<Node> > &adjList, int start, int finish, bool isRecur, std::vector<bool> visited, Node* lastNode){
     if(!isRecur){
         std::queue<Node> myQueue;
         std::vector<Node>::iterator it = adjList[start-1].begin();
@@ -23,11 +23,15 @@ void BFS::searchList(std::vector<std::vector<Node> > &adjList, int start, int fi
             myQueue.pop();
             
             for(it = adjList[node.data-1].begin()+1; it != adjList[node.data-1].end(); it++){
-                if(it->data == finish)
+                if(it->data == finish){
+                    nodesExplored++;
+                    lastNode->nextPtr = new Node();
+                    lastNode->nextPtr->data = it->data;
                     return;
+                }
                 std::vector<Node>::iterator nodeVisit = adjList[it->data-1].begin();
                 if(!visited[(*it).data-1]){
-                    path.push_back((*it).data);
+                    nodesExplored++;
                     lastNode->nextPtr = &*it;
                     visited[nodeVisit->data-1] = true;
                     myQueue.push(*it);
@@ -36,22 +40,11 @@ void BFS::searchList(std::vector<std::vector<Node> > &adjList, int start, int fi
             }
         }
     } else {
-        //1 2 5 6 9 10 13 14 15
-        if(start == finish)
-            return;
-        visited[start-1] = true;
-        for(std::vector<Node>::iterator it = adjList[start-1].begin()+1; it != adjList[start-1].end(); it++) {
-            if(!visited[it->data-1]) {
-                path.push_back(it->data);
-                visited[it->data-1] = true;
-                lastNode->nextPtr = &*it;
-                searchList(adjList, it->data, finish, path, true, visited, &*it);
-            }
-        }
+        
     }
 }
 
-void BFS::searchMatrix(int **mat, int start, int finish,std::vector<int>& path, bool isRecur, std::vector<bool> visited, Node* lastNode) {
+void BFS::searchMatrix(int **mat, int start, int finish, bool isRecur, std::vector<bool> visited, Node* lastNode) {
     if(!isRecur) {
         std::queue<int> myQueue;
         int val = start;
@@ -61,11 +54,14 @@ void BFS::searchMatrix(int **mat, int start, int finish,std::vector<int>& path, 
             int node = myQueue.front();
             myQueue.pop();
             
-            for(int i=node-1; i < 16; i++){//figure out what to make range
-                if(node == finish)
+            for(int i=node-1; i < finish; i++){//figure out what to make range
+                if(node == finish){
+                    nodesExplored++;
                     return;
+                }
                 if(mat[node-1][i] != 0 && !visited[i] && node-1 != i){
                     if (!visited[i]) {
+                        nodesExplored++;
                         visited[i] = true;
                         lastNode->nextPtr = new Node();
                         lastNode->nextPtr->data = i+1;
@@ -73,19 +69,9 @@ void BFS::searchMatrix(int **mat, int start, int finish,std::vector<int>& path, 
                         myQueue.push(i+1);
                     }
                 }
-                
             }
         }
-        
     } else {
-        if(start == finish){
-            path.push_back(start);
-            return;
-        }
-        for(int i=0; i < sizeof mat/sizeof mat[0]; i++)
-            if(!visited[start-1]&&mat[start-1][i]==1){
-                path.push_back(i+1);
-                searchMatrix(mat, i+1, finish, path, true, visited, lastNode);
-            }
+        
     }
 }

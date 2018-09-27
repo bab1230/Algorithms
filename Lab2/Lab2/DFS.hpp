@@ -14,7 +14,7 @@
 class DFS : public SearchAlgo{
 public:
     DFS();
-    virtual void searchList(std::vector<std::vector<Node>>& adjList, int start, int finish, std::vector<int>& path, bool isRecur, std::vector<bool> visited, Node* lastNode);
-    virtual void searchMatrix(int** mat, int start, int finish, std::vector<int>& path, bool isRecur, std::vector<bool> visited, Node* lastNode);
+    virtual void searchList(std::vector<std::vector<Node>>& adjList, int start, int finish, bool isRecur, std::vector<bool> visited, Node* lastNode);
+    virtual void searchMatrix(int** mat, int start, int finish, bool isRecur, std::vector<bool> visited, Node* lastNode);
 };
 #endif /* DFS_hpp */

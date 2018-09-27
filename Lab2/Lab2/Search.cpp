@@ -101,8 +101,7 @@ void Search::load(std::string graphFile, std::string weightsFile, std::string po
     for(size_t i = 0; i < adjacencyList.size(); i++)
         for(size_t j = 0; j < adjacencyList.size(); j++)
             adjacencyMatrix[i][j] = 0;
-        
-    //std::fill(adjacencyMatrix[0], adjacencyMatrix[0] + adjacencyList.size()*adjacencyList.size(), 0);
+    
 
     while(graph >> line){
         std::stringstream seperate(line);
@@ -112,47 +111,44 @@ void Search::load(std::string graphFile, std::string weightsFile, std::string po
             adjacencyMatrix[row-1][std::stoi(temp)-1] = 1;
     }
 }
-void Search::excecute(){
-    std::vector<int> iterPath;
-    std::vector<int> recurPath;
+void Search::excecute(int start, int finish, bool isRecur, bool isList){
     std::vector<bool> visited(adjacencyList.size(), false);
+    auto startTime = std::chrono::high_resolution_clock::now();
+    if(isList)
+        searchAlgo->searchList(adjacencyList, start, finish, isRecur, visited, &adjacencyList[0].front());
+    else
+        searchAlgo->searchMatrix(adjacencyMatrix, start, finish, isRecur, visited, &adjacencyList[0].front());
+    auto finishTime = std::chrono::high_resolution_clock::now();
+
+    std::chrono::duration<double> elapsed = finishTime - startTime;
+    time = elapsed.count();
+    if(isRecur)
+        algoName += "Recursive ";
+    else
+        algoName += "Iterative ";
+    if(isList)
+        algoName += "Adjacency List";
+    else
+        algoName += "Adjacency Matrix";
     
-    /*clears next pointers
-    DFS::Node* clear = &adjacencyList[0].front();
-    DFS::Node* temp = clear->nextPtr;
-    while(clear->nextPtr){
-        clear->nextPtr = nullptr;
-        clear = temp;
-    }*/
-    
-    //searchAlgo->searchList(adjacencyList, 16, 1, iterPath, false, visited, &adjacencyList[0].front());
-    searchAlgo->searchMatrix(adjacencyMatrix, 1, 16, iterPath, false, visited, &adjacencyList[0].front());
-    
-//    for(auto i: iterPath) {
-//        std::cout << i << " ";
-//    }
-    
-    std::cout << std::endl << std::endl;
     DFS::Node buff = adjacencyList[0].front();
     while(buff.nextPtr){
-        std::cout << buff.data << " ";
+        returnedPath += std::to_string(buff.data) + " ";
+        distance += sqrt(buff.distance);
         buff = *buff.nextPtr;
     }
-    std::cout << buff.data << std::endl;
-    /*std::cout << "Iterative Path: ";
-    for(auto i: iterPath)
-        std::cout << i << " ";
-    std::cout << std::endl;
-    
-    std::cout << "Recursive Path: ";
-    for(auto i: recurPath)
-        std::cout << i << " ";
-    std::cout << std::endl;*/
+    returnedPath += std::to_string(buff.data) + " ";
+    distance += sqrt(buff.distance);
 }
 void Search::display(){
     
 }
 void Search::stats(){
+    std::cout << "Algorithm Name: " << algoName << std::endl;
+    std::cout << "Path: " << returnedPath << std::endl;
+    std::cout << "Distance: " << distance << std::endl;
+    std::cout << "Number of nodes explored: " << searchAlgo->nodesExplored << std::endl;
+    std::cout << "Excecution time: " << time << " seconds" << std::endl << std::endl;
     
 }
 void Search::select(AlgoType algo){
@@ -160,9 +156,11 @@ void Search::select(AlgoType algo){
             break;
         case DFS:
             searchAlgo = new class DFS();
+            algoName += "DFS ";
             break;
         case BFS:
             searchAlgo = new class BFS();
+            algoName += "BFS ";
             break;
         case DIJKSTRA:
             //selectedAlgo = new Dijikstra();
@@ -179,4 +177,17 @@ void Search::save(std::string fileName){
 }
 void Search::configure(){
     
+}
+void Search::clear() {
+    for(int i = 0; i < adjacencyList.size(); i++)
+        delete [] adjacencyMatrix[i];
+    delete [] adjacencyMatrix;
+    for(auto i: adjacencyList)
+        i.clear();
+    adjacencyList.clear();
+    path.clear();
+    returnedPath = "";
+    algoName = "";
+    searchAlgo->nodesExplored = 0;
+    distance = 0;
 }

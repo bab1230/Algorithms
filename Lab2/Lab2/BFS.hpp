@@ -15,8 +15,8 @@
 class BFS : public SearchAlgo{
 public:
     BFS();
-    virtual void searchList(std::vector<std::vector<Node>>& adjList, int start, int finish, std::vector<int>& path, bool isRecur, std::vector<bool> visited, Node* lastNode);
-    virtual void searchMatrix(int** mat, int start, int finish, std::vector<int>& path, bool isRecur, std::vector<bool> visited, Node* lastNode);
+    virtual void searchList(std::vector<std::vector<Node>>& adjList, int start, int finish, bool isRecur, std::vector<bool> visited, Node* lastNode);
+    virtual void searchMatrix(int** mat, int start, int finish, bool isRecur, std::vector<bool> visited, Node* lastNode);
 //(Node**, int, int, std::vector<int>&, bool, std::vector<bool>, Node* lastNode)
 //(Node**, int, int, std::vector<int>&, bool, std::vector<bool> visited);
 private:
